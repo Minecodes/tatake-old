@@ -1,2 +1,2 @@
-# tatake
-Another discord bot in golang/go
+# Tatake
+An multi-purpose Discord Bot that is written in NodeJS
