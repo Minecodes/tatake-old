@@ -12,8 +12,6 @@ var help_1 = __importDefault(require("../src/commands/help"));
 var hi_1 = __importDefault(require("../src/commands/hi"));
 var image_1 = __importDefault(require("../src/commands/image"));
 var serverinfo_1 = __importDefault(require("../src/commands/serverinfo"));
-var short_1 = __importDefault(require("../src/commands/short"));
-var test_1 = __importDefault(require("../src/commands/test"));
 exports["default"] = {
     commands: [
         {
@@ -47,14 +45,6 @@ exports["default"] = {
         {
             name: ["serverinfo", "sinfo"],
             "import": serverinfo_1["default"]
-        },
-        {
-            name: ["short", "shorter", "s"],
-            "import": short_1["default"]
-        },
-        {
-            name: ["t", "test"],
-            "import": test_1["default"]
         },
         {
             name: ["help", "h", "?"],
