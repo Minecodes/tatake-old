@@ -7,8 +7,6 @@ import help from "../src/commands/help";
 import hi from "../src/commands/hi";
 import image from "../src/commands/image";
 import serverinfo from "../src/commands/serverinfo";
-import short from "../src/commands/short";
-import test from "../src/commands/test";
 
 export default {
     commands: [
@@ -43,14 +41,6 @@ export default {
         {
             name: [ "serverinfo", "sinfo" ],
             import: serverinfo
-        },
-        {
-            name: [ "short", "shorter", "s" ],
-            import: short
-        },
-        {
-            name: [ "t", "test" ],
-            import: test
         },
         {
             name: [ "help", "h", "?" ],
