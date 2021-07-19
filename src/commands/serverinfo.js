@@ -35,17 +35,23 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 exports.__esModule = true;
-var discord_js_1 = require("discord.js");
+var author_1 = __importDefault(require("../infos/author"));
+var embed_1 = __importDefault(require("../libs/embed"));
+var discord_buttons_1 = require("discord-buttons");
 exports["default"] = (function (message, args, client) { return __awaiter(void 0, void 0, void 0, function () {
     return __generator(this, function (_a) {
         message["delete"]();
-        message.channel.send(new discord_js_1.MessageEmbed()
-            .setTitle(/ ServerInfo /)
-            .setColor(0xffffff)
-            .setAuthor("Tatake", "https://web-static.vercel.app/tatake-mini.png", "https://github.com/Minecodes/tatake")
-            .setImage(message.guild.iconURL())
-            .setDescription("\nName - " + message.guild.name + "\nMembers - " + message.guild.memberCount + "\nRegion - " + message.guild.region + "\nID - " + message.guild.id + "\nOwner - " + message.guild.owner + "\n"));
+        message.channel.send(embed_1["default"]("/ ServerInfo /", author_1["default"], "\nName - " + message.guild.name + "\nMembers - " + message.guild.memberCount + "\nRegion - " + message.guild.region + "\nID - " + message.guild.id + "\nOwner - " + message.guild.owner + "\n", 0xF44336, {
+            image: message.guild.iconURL()
+        }), new discord_buttons_1.MessageButton()
+            .setEmoji("⛔")
+            .setLabel("Close")
+            .setID("close")
+            .setStyle("red"));
         return [2];
     });
 }); });

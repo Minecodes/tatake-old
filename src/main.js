@@ -40,18 +40,78 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 exports.__esModule = true;
 var discord_js_1 = __importDefault(require("discord.js"));
-var dotenv_1 = require("dotenv");
+var randomfox_1 = require("randomfox");
+var logs_1 = require("./tools/logs");
 var commands_1 = __importDefault(require("../config/commands"));
+var config_json_1 = require("../config/config.json");
 var discord_buttons_1 = __importDefault(require("discord-buttons"));
-dotenv_1.config();
+var serverCount = 0;
+process.env.TOKEN = config_json_1.TOKEN;
+process.env.PREFIX = config_json_1.PREFIX;
 var client = new discord_js_1["default"].Client();
+setInterval(function () { return __awaiter(void 0, void 0, void 0, function () {
+    return __generator(this, function (_a) {
+        serverCount = 0;
+        client.guilds.cache.map(function (server) {
+            serverCount++;
+        });
+        if (config_json_1.DEBUG) {
+            logs_1.debug("Info change (all 30 secs)");
+            logs_1.info("Bot is on " + serverCount + " servers");
+        }
+        client.user.setPresence({
+            status: "dnd"
+        });
+        client.user.setActivity(randomfox_1.customfox([
+            "On " + serverCount + " servers",
+            "Open source on Github: https://github.com/Minecodes/tatake",
+            "Usage: ::",
+            "Floof!",
+            "Support: https://discord.gg/hjwYPE2ZXu"
+        ]), {
+            name: "Tatake",
+            type: "PLAYING"
+        });
+        return [2];
+    });
+}); }, 30000);
 discord_buttons_1["default"](client);
 client.on("ready", function () {
-    console.log("Logged in as " + client.user.tag);
+    logs_1.log("Logged in as " + client.user.tag);
+    if (config_json_1.DEBUG) {
+        logs_1.debug("Info change (all 30 secs)");
+    }
+    client.guilds.cache.map(function (server) {
+        serverCount++;
+    });
+    logs_1.info("Bot is on " + serverCount + " servers");
+    client.user.setPresence({
+        status: "dnd"
+    });
+    client.user.setActivity(randomfox_1.customfox([
+        "On " + client.guilds.cache.array.length + " servers",
+        "Open source on Github: https://github.com/Minecodes/tatake",
+        "Usage: ::",
+        "Floof!",
+        "Support: https://discord.gg/hjwYPE2ZXu"
+    ]), {
+        name: "Tatake",
+        type: "PLAYING"
+    });
+});
+client.on("error", function (err) {
+    logs_1.error(err);
+});
+client.on("warn", function (warnText) {
+    logs_1.warn(warnText);
 });
 client.on("clickButton", function (button) { return __awaiter(void 0, void 0, void 0, function () {
     return __generator(this, function (_a) {
         switch (button.id) {
+            case "close":
+                button.reply.defer(true);
+                button.message["delete"]();
+                break;
             case "English":
                 button.message.edit(new discord_js_1["default"].MessageEmbed()
                     .setAuthor("Tatake", "https://web-static.vercel.app/tatake-mini.png", "https://github.com/Minecodes/tatake")
@@ -79,7 +139,7 @@ client.on("clickButton", function (button) { return __awaiter(void 0, void 0, vo
                     .setAuthor("Tatake", "https://web-static.vercel.app/tatake-mini.png", "https://github.com/Minecodes/tatake")
                     .setTitle(/ Help /)
                     .setColor(0xE53935)
-                    .setDescription("\ncoin | coins | coinmoney - flip a coin\nhi | hello | salve - say hi \uD83D\uDC4B\uD83C\uDFFB\n"));
+                    .setDescription("\ncoin | coins | coinmoney - flip a coin\nhi | hello | salve - say hi \uD83D\uDC4B\uD83C\uDFFB\nping | pong - PONG!\n"));
                 break;
             case "infos":
                 button.reply.defer(true);
@@ -87,7 +147,7 @@ client.on("clickButton", function (button) { return __awaiter(void 0, void 0, vo
                     .setAuthor("Tatake", "https://web-static.vercel.app/tatake-mini.png", "https://github.com/Minecodes/tatake")
                     .setTitle(/ Help /)
                     .setColor(0x00897B)
-                    .setDescription("\navatar | selfie - get your avatar\nhelp | h | ? - get this help\n"));
+                    .setDescription("\navatar | selfie - get your avatar\nhelp | h | ? - get this help\nserverinfo | sinfo | si - get informations about the server\nbotinfo | binfo | bi - get informations about the bot - infos & internet\n"));
                 break;
             case "photos":
                 button.reply.defer(true);
@@ -103,7 +163,7 @@ client.on("clickButton", function (button) { return __awaiter(void 0, void 0, vo
                     .setAuthor("Tatake", "https://web-static.vercel.app/tatake-mini.png", "https://github.com/Minecodes/tatake")
                     .setTitle(/ Help /)
                     .setColor(0x1E88E5)
-                    .setDescription("\nIncoming...\n"));
+                    .setDescription("\nshort | shorter | s - short your link/url\nbotinfo | binfo | bi - get informations about the bot - infos & internet\nmathnumber | mathnumbers | mnum - get answer to numbers from math\ntrival | trivals - get answers to numbers\n"));
                 break;
             case "cancel":
                 button.reply.defer(true);

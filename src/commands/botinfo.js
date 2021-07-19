@@ -35,49 +35,66 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 exports.__esModule = true;
-var discord_js_1 = require("discord.js");
+var author_1 = __importDefault(require("../infos/author"));
+var embed_1 = __importDefault(require("../libs/embed"));
 var discord_buttons_1 = require("discord-buttons");
+var sc = 0;
 exports["default"] = (function (message, args, client) { return __awaiter(void 0, void 0, void 0, function () {
-    var b1, b2, b3, b4, cancel, menu;
+    var owner, scount, ppic, id, tag;
     return __generator(this, function (_a) {
-        b1 = new discord_buttons_1.MessageButton()
-            .setEmoji("🔮")
-            .setLabel("Fun")
-            .setID("fun")
-            .setStyle("blurple");
-        b2 = new discord_buttons_1.MessageButton()
-            .setEmoji("🔎")
-            .setLabel("Infos")
-            .setID("infos")
-            .setStyle("green");
-        b3 = new discord_buttons_1.MessageButton()
-            .setEmoji("📸")
-            .setLabel("Photos")
-            .setID("photos")
-            .setStyle("gray");
-        b4 = new discord_buttons_1.MessageButton()
-            .setEmoji("🤖")
-            .setLabel("Internet")
-            .setID("internet")
-            .setStyle("red");
-        cancel = new discord_buttons_1.MessageButton()
-            .setEmoji("⛔")
-            .setLabel("Cancel")
-            .setID("cancel")
-            .setStyle("grey");
-        menu = new discord_buttons_1.MessageActionRow()
-            .addComponents(b1, b2, b3, b4, cancel);
-        message["delete"]();
-        message.channel.send(new discord_js_1.MessageEmbed()
-            .setAuthor("Tatake", "https://web-static.vercel.app/tatake-mini.png", "https://github.com/Minecodes/tatake")
-            .setTitle(/ Help /)
-            .setColor(0xF4511E)
-            .setDescription("")
-            .addField("🔮 Fun 🔮", "coin, hi, etc.", false)
-            .addField("🔎 Infos 🔎", "avatar, help, etc.", false)
-            .addField("📷 Photos 📸", "anime, fox, etc.", false)
-            .addField("🤖 Internet 🤖", "short, botinfo", false), menu);
-        return [2];
+        switch (_a.label) {
+            case 0:
+                message["delete"]();
+                sc = 0;
+                return [4, client.guilds.cache.map(function (server) {
+                        sc++;
+                    })];
+            case 1:
+                _a.sent();
+                owner = {
+                    name: "Owner",
+                    value: "Minecodes",
+                    inline: true
+                };
+                scount = {
+                    name: "Servercount",
+                    value: sc,
+                    inline: true
+                };
+                ppic = {
+                    name: "Profile photo",
+                    value: client.user.avatarURL(),
+                    inline: true
+                };
+                id = {
+                    name: "ID",
+                    value: client.user.id,
+                    inline: true
+                };
+                tag = {
+                    name: "Tag",
+                    value: client.user.tag,
+                    inline: true
+                };
+                message.channel.send(embed_1["default"]("/ BotInfo /", author_1["default"], "", 0xFF7043, {
+                    fields: [
+                        owner,
+                        scount,
+                        ppic,
+                        id,
+                        tag
+                    ],
+                    image: author_1["default"].pictureURL
+                }), new discord_buttons_1.MessageButton()
+                    .setEmoji("⛔")
+                    .setLabel("Close")
+                    .setID("close")
+                    .setStyle("red"));
+                return [2];
+        }
     });
 }); });

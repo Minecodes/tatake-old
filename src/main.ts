@@ -1,19 +1,82 @@
 import Discord from "discord.js";
-//import config from "../config/config";
-import { config } from "dotenv";
+import { customfox } from "randomfox";
+import { error, info, log, warn, debug } from "./tools/logs";
 import cmds from "../config/commands";
+import { PREFIX, TOKEN, DEBUG } from "../config/config.json";
 import disbut from 'discord-buttons';
-config();
+var serverCount = 0;
+process.env.TOKEN = TOKEN;
+process.env.PREFIX = PREFIX;
 
 const client = new Discord.Client();
+setInterval(async () => {
+    serverCount = 0;
+    client.guilds.cache.map((server) => {
+        serverCount++;
+    });
+    if (DEBUG) {
+        debug("Info change (all 30 secs)");
+        info(`Bot is on ${serverCount} servers`);
+    }
+    client.user.setPresence({
+        status: "dnd"
+    });
+    client.user.setActivity(customfox([
+        `On ${serverCount} servers`,
+        "Open source on Github: https://github.com/Minecodes/tatake",
+        "Usage: ::",
+        "Floof!",
+        "Support: https://discord.gg/hjwYPE2ZXu"
+    ]), {
+        name: "Tatake",
+        type: "PLAYING"
+    });
+}, 30000);
 disbut(client);
 
 client.on("ready", () => {
-    console.log(`Logged in as ${client.user.tag}`);
-})
+    log(`Logged in as ${client.user.tag}`);
+    //console.log(`Logged in as ${client.user.tag}`);
+    if (DEBUG) {
+        debug("Info change (all 30 secs)");
+        //process.stdout.write(`[${chalk.cyan("Debug")}] Info change (all 30 secs)\n`);
+    }
+    client.guilds.cache.map((server) => {
+        serverCount++;
+    });
+    //process.stdout.write(`[${chalk.green("Info")}] Bot is on ${serverCount} servers\n`);
+    info(`Bot is on ${serverCount} servers`);
+    client.user.setPresence({
+        status: "dnd"
+    });
+    client.user.setActivity(customfox([
+        `On ${client.guilds.cache.array.length} servers`,
+        "Open source on Github: https://github.com/Minecodes/tatake",
+        "Usage: ::",
+        "Floof!",
+        "Support: https://discord.gg/hjwYPE2ZXu"
+    ]), {
+        name: "Tatake",
+        type: "PLAYING"
+    });
+});
+
+client.on("error", (err) => {
+    //process.stdout.write(`[${chalk.red("ERROR")}] ${error}\n`);
+    error(err);
+});
+
+client.on("warn", (warnText) => {
+    //process.stdout.write(`[${chalk.yellow("Warn")}] ${warnText}\n`);
+    warn(warnText);
+});
 
 client.on("clickButton", async (button) => {
     switch(button.id) {
+        case "close":
+            button.reply.defer(true);
+            button.message.delete();
+            break;
         case "English":
                 button.message.edit(
                     new Discord.MessageEmbed()
@@ -61,6 +124,7 @@ client.on("clickButton", async (button) => {
 `
 coin | coins | coinmoney - flip a coin
 hi | hello | salve - say hi 👋🏻
+ping | pong - PONG!
 `
                     )
             );
@@ -79,6 +143,8 @@ hi | hello | salve - say hi 👋🏻
 `
 avatar | selfie - get your avatar
 help | h | ? - get this help
+serverinfo | sinfo | si - get informations about the server
+botinfo | binfo | bi - get informations about the bot - infos & internet
 `
                     )
             );
@@ -115,7 +181,10 @@ image | googleimage | googleimages | images | gi - random images
                     .setColor(0x1E88E5)
                     .setDescription(
 `
-Incoming...
+short | shorter | s - short your link/url
+botinfo | binfo | bi - get informations about the bot - infos & internet
+mathnumber | mathnumbers | mnum - get answer to numbers from math
+trival | trivals - get answers to numbers
 `
                     )
             );

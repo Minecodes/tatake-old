@@ -42,7 +42,7 @@ export default async (message, args, client) => {
             .addField("🔮 Fun 🔮", "coin, hi, etc.", false)
             .addField("🔎 Infos 🔎", "avatar, help, etc.", false)
             .addField("📷 Photos 📸", "anime, fox, etc.", false)
-            .addField("🤖 Internet 🤖", "short", false),
+            .addField("🤖 Internet 🤖", "short, botinfo", false),
         menu
     );
 }
