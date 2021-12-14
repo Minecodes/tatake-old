@@ -26,6 +26,11 @@
   resolved "https://registry.yarnpkg.com/@types/node/-/node-16.3.3.tgz#0c30adff37bbbc7a50eb9b58fae2a504d0d88038"
   integrity sha512-8h7k1YgQKxKXWckzFCMfsIwn0Y61UK6tlD6y2lOb3hTOIMlK3t9/QwHOhc81TwU+RMf0As5fj7NPjroERCnejQ==
 
+"@types/node@^16.4.5":
+  version "16.11.12"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-16.11.12.tgz#ac7fb693ac587ee182c3780c26eb65546a1a3c10"
+  integrity sha512-+2Iggwg7PxoO5Kyhvsq9VarmPbIelXP070HMImEpbtGCoyWNINQj4wzjbQCXzdHTRXnqufutJb5KAURZANNBAw==
+
 "@types/request@^2.48.6":
   version "2.48.6"
   resolved "https://registry.yarnpkg.com/@types/request/-/request-2.48.6.tgz#2300e7fc443108f79efa90e3bdf34c6d60fa89d8"
@@ -354,10 +359,12 @@ qs@~6.5.2:
   resolved "https://registry.yarnpkg.com/qs/-/qs-6.5.2.tgz#cb3ae806e8740444584ef154ce8ee98d403f3e36"
   integrity sha512-N5ZAX4/LxJmF+7wN74pUD6qAh9/wnvdQcjq9TZjevvXzSUo7bfmw91saqMjzGS2xq91/odN2dW/WOl7qQHNDGA==
 
-randomfox@^1.1.3:
-  version "1.1.3"
-  resolved "https://registry.yarnpkg.com/randomfox/-/randomfox-1.1.3.tgz#6152b7a5eff38b15985d485cd3019a1592f103eb"
-  integrity sha512-m+k/YZQ4Yl0Si/kpz1Qcvz4RctbszulyDA16CBx6c+46dWBIf8W+N/89K5ytdyS4IueHl7S2anoYtGafnm2Bmg==
+randomfox@^1.2.1:
+  version "1.2.1"
+  resolved "https://registry.yarnpkg.com/randomfox/-/randomfox-1.2.1.tgz#a1436912520d628cb20916e817b9a9136a596e19"
+  integrity sha512-yHsjQzy3UlVrFyoSq/SA299El9w72G5P11MJYR3AYqvVYUEoUt8zgMBYap5EV+0/lzGCAXM7iaAJMVupQSiuWA==
+  dependencies:
+    "@types/node" "^16.4.5"
 
 request@^2.88.2:
   version "2.88.2"
