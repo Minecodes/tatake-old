@@ -1,4 +1,8 @@
 ![](https://web-static.vercel.app/tatake-banner.png)
+
+**!!WARNING!!**
+This is an unmaintained version! Please use the [new version](https://git.minecodes.de/thies/Tatake) or one of its mirrors on [Github](https://github.com/Minecodes/Tatake), [SurvivalCube Git](https://git.survivalcube.net/Minecodes/Tatake) or [CodeBerg](https://codeberg.org/Minecodes/Tatake)
+
 # Tatake
 An multi-purpose Discord Bot that is written in NodeJS
 
