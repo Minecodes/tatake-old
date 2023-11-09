@@ -16,7 +16,7 @@
     "@types/request": "^2.48.6",
     "chalk": "^4.1.2",
     "discord-buttons": "^4.0.0",
-    "discord.js": "^12.5.3",
+    "discord.js": "^14.0.0",
     "dotenv": "^10.0.0",
     "randomfox": "^1.2.1",
     "request": "^2.88.2"
